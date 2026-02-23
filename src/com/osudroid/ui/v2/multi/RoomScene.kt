@@ -317,12 +317,6 @@ class RoomScene(val room: Room) : UIScene(), IRoomEventListener, IPlayerEventLis
                                     alpha = 0.6f
                                 }
                             }
-                            foreground = UIBox().apply {
-                                cornerRadius = 12f
-                                paintStyle = PaintStyle.Outline
-                                lineWidth = 1f
-                                applyTheme = { color = it.accentColor }
-                            }
                         }
 
                         linearContainer {

@@ -8,6 +8,7 @@ import com.reco1l.andengine.container.*
 import com.reco1l.andengine.sprite.*
 import com.reco1l.andengine.text.*
 import com.reco1l.andengine.ui.*
+import com.reco1l.framework.math.Vec4
 import com.reco1l.toolkt.*
 import com.rian.osu.*
 import com.rian.osu.utils.ModUtils.applyModsToBeatmapDifficulty
@@ -53,6 +54,7 @@ class BeatmapInfoLayout : UILinearContainer() {
                     grow = 1f
                 }
                 orientation = Orientation.Vertical
+                padding = Vec4(0f, 0f, 12f, 0f)
 
                 artistText = text {
                     width = FillParent

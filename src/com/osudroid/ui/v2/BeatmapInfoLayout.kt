@@ -55,9 +55,11 @@ class BeatmapInfoLayout : UILinearContainer() {
                 orientation = Orientation.Vertical
 
                 artistText = text {
+                    width = FillParent
                     font = ResourceManager.getInstance().getFont("smallFont")
                     text = "Unknown"
                     applyTheme = { color = it.accentColor * 0.9f }
+                    clipToBounds = true
                 }
 
                 titleText = text {
@@ -69,9 +71,11 @@ class BeatmapInfoLayout : UILinearContainer() {
                 }
 
                 versionText = text {
+                    width = FillParent
                     font = ResourceManager.getInstance().getFont("smallFont")
                     text = "Unknown"
                     applyTheme = { color = it.accentColor * 0.8f }
+                    clipToBounds = true
                 }
 
                 creatorText = text {

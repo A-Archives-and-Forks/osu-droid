@@ -24,7 +24,6 @@ import com.reco1l.toolkt.kotlin.*
 import com.reco1l.toolkt.kotlin.async
 import com.rian.framework.RollingFloatCounter
 import com.rian.osu.*
-import com.rian.osu.beatmap.Beatmap
 import com.rian.osu.difficulty.BeatmapDifficultyCalculator.calculateDroidDifficulty
 import com.rian.osu.difficulty.BeatmapDifficultyCalculator.calculateStandardDifficulty
 import com.rian.osu.mods.*
@@ -76,7 +75,6 @@ object ModMenu : UIScene() {
     private val starRatingBadge: StarRatingBadge
     private val scoreMultiplierBadge: StatisticsBadge
 
-    private var parsedBeatmap: Beatmap? = null
     private var calculationJob: Job? = null
 
 
@@ -343,18 +341,15 @@ object ModMenu : UIScene() {
             val difficultyAlgorithm = Config.getDifficultyAlgorithm()
             val gameMode = if (difficultyAlgorithm == droid) GameMode.Droid else GameMode.Standard
 
-            if (parsedBeatmap?.md5 != selectedBeatmap.md5 || parsedBeatmap?.mode != gameMode) {
-                parsedBeatmap = try {
-                    BeatmapCache.getBeatmap(selectedBeatmap, true, gameMode, this)
-                } catch (e: Exception) {
-                    when (e) {
-                        is IOException, is IllegalArgumentException -> null
-                        else -> throw e
-                    }
+            val beatmap = try {
+                BeatmapCache.getBeatmap(selectedBeatmap, true, gameMode, this)
+            } catch (e: Exception) {
+                when (e) {
+                    is IOException, is IllegalArgumentException -> null
+                    else -> throw e
                 }
             }
 
-            val beatmap = parsedBeatmap
             val songMenu = GlobalManager.getInstance().songMenu
 
             if (beatmap == null) {
